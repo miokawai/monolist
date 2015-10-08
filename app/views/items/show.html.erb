@@ -7,8 +7,8 @@
     <div class="item-single-main">
       <div class="image">
         <div class="img-wrap">
-          <% if @item.medium_image.present? %>
-          <%= image_tag(@item.medium_image , alt: @item.title) %>
+          <% if @item.large_image.present? %>
+          <%= image_tag(@item.large_image , alt: @item.title) %>
           <% else %>
           <% #TODO 商品イメージ %>
           <%= image_tag("no-image.png" , alt: @item.title) %>
