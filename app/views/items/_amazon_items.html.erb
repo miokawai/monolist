@@ -5,9 +5,7 @@
         <div class="image">
           <div class="img-wrap">
             <% #TODO 商品画像 %>
-            <% unless item.get('LargeImage/URL') %>
             <%= image_tag("no-image.png" , alt: item.get('ItemAttributes/Title')) %>
-            <% end %>
           </div>
         </div>
         <div class="detail">
