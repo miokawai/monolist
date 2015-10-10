@@ -12,18 +12,18 @@ class User < ActiveRecord::Base
   has_many :followed_relationships, class_name:  "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followed_users, through: :followed_relationships, source: :follower
 
-  has_many :ownerships , foreign_key: "item_id", dependent: :destroy
-  has_many :items ,through:  :ownerships
+  has_many :ownerships, foreign_key: "item_id", dependent: :destroy
+  has_many :items ,through: :ownerships
 
-  has_many :wants,class_name: "Want", foreign_key: "user_id", dependent: :destroy
-  has_many :want_items , through: :wants, source: :item
-  
-  has_many :haves,class_name: "Have", foreign_key: "user_id", dependent: :destroy
-  has_many :have_items , through: :haves, source: :item
+  has_many :wants, class_name: "Want", foreign_key: "user_id", dependent: :destroy #class_nameを指定する事により、typeがwantものをとる。 (マイグレーションファイルに書かれている。）
+  has_many :want_items, through: :wants, source: :item 
+
+  has_many :haves, class_name: "Have", foreign_key: "user_id", dependent: :destroy
+  has_many :have_items, through: :haves, source: :item
 
   # 他のユーザーをフォローする
   def follow(other_user)
-    following_relationships.create(followed_id: other_user.id)
+    following_relationships.create(followed_id: other_user.id) 
   end
 
   def unfollow(other_user)
@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   end
 
   def unwant(item)
-    want.find_by(item_id: item.id).destroy
+    wants.find_by(item_id: item.id).destroy
   end
 
   def want?(item)
