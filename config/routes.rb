@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
-
+  
+  get 'ranking/have_list'
+  get 'ranking/want_list'
   root 'welcome#index'
 
   get    'signup', to: 'users#new'
   get    'login' , to: 'sessions#new'
   post   'login' , to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  get 'have_list', to: 'ranking#have_list'
+  get 'want_list', to: 'ranking#want_list'
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
-  resources :ownerships, only: [:new, :create, :destroy]
+  resources :ownerships, only: [:create, :destroy]
   resources :items , only: [:new , :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
