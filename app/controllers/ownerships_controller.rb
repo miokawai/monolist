@@ -39,8 +39,8 @@ class OwnershipsController < ApplicationController
     if params[:type] == "Have"
       current_user.have(@item)
     elsif  params[:type] == "Want"
-    current_user.want(@item)
-  end
+      current_user.want(@item)
+   end
   end
 
   def destroy
